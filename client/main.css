@@ -1,0 +1,39 @@
+body {
+  background: #81849c;
+}
+
+.card-holder {
+  height: 20%;
+  width: 20%;
+}
+
+/* login */
+
+#login-buttons a {
+  text-decoration: none!important;
+}
+
+#login-buttons {
+  line-height: inherit!important;
+  right: 1.5em;
+  position: absolute;
+}
+
+#login-dropdown-list {
+  left: -10em!important;
+}
+
+/* end login */
+
+.my-pics {
+  width: 200px;
+}
+
+.single-picture {
+  position: relative;
+  float: left;
+}
+
+.add-input-group {
+  margin-bottom: 2em;
+}
