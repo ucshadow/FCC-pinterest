@@ -9,5 +9,6 @@ Accounts.onCreateUser(function(options, user) {
     user.username = options.profile.name;
   }
   user.profile = options.profile;
+  Meteor.call("addToUserData", user.username);
   return user
 });

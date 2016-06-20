@@ -23,7 +23,10 @@ export default class Home extends Component {
   }
 
   click_() {
-    console.log(this.props.userData);
+    Meteor.call("solve", function(err, res) {
+      if(err){console.log(err)}
+      console.log(res)
+    })
   };
 
   mapCards() {
@@ -35,8 +38,9 @@ export default class Home extends Component {
   render() {
     return (
       <MuiThemeProvider muiTheme={lightMuiTheme}>
-        <div>
+        <div className="card-holder" id="card-container">
           {this.mapCards()}
+          <button onClick={this.click_} > DATA </button>
         </div>
       </MuiThemeProvider>
     )

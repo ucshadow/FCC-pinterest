@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data'
 import { UserData } from '../api/userData'
-import AddCardComponents from '../ui/SingleCard.jsx'
+import AddCardComponents from '../ui/AddCardComponents.jsx'
 
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -43,7 +43,7 @@ class MyScraps extends Component {
   mapCards() {
     return this.state.d.map((c) => {
       return <AddCardComponents key={Math.random()} d={c} userName={Meteor.user().username}
-                         avatar={Meteor.user().profile.avatar}/>
+                         avatar={Meteor.user().profile.avatar} profile={true} _id_={c._id_}/>
     })
   }
 
@@ -70,49 +70,19 @@ class MyScraps extends Component {
   render() {
     return (
       <MuiThemeProvider muiTheme={lightMuiTheme}>
-        <div className="card-holder">
+        <div className="my-cards-container">
           <div className="add-input-group">
             <input type="text" id="pic"/>
             <input type="text" id="comment"/>
             <button onClick={this.addCard} > Add Card </button>
           </div>
-          {this.displayScraps()}
-          {this.mapCards()}
+          <div className="card-holder">
+
+            {this.displayScraps()}
+            {this.mapCards()}
+          </div>
         </div>
       </MuiThemeProvider>
-    )
-  }
-}
-
-
-
-class SinglePicture extends Component {
-
-  constructor(props) {
-    super(props);
-
-    this.getCards = this.getCards.bind(this);
-    this.click_ = this.click_.bind(this);
-  }
-
-  getCards() {
-    return (
-      <div>
-        <img src={this.props.d.url} className="my-pics" />
-      </div>
-    )
-  }
-
-  click_() {
-    console.log(UserData.findOne({name: "SHADOW"}))
-  }
-
-  render() {
-    return (
-      <div className="single-picture">
-        {this.props.d ? this.getCards() : "Loading data..."}
-        <button className="delete-card" onClick={this.click_} > CLICK </button>
-      </div>
     )
   }
 }

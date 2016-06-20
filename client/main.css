@@ -2,9 +2,15 @@ body {
   background: #81849c;
 }
 
+#card-container {
+
+}
+
 .card-holder {
-  height: 20%;
-  width: 20%;
+  -moz-column-width: 18em;
+  -webkit-column-width: 18em;
+  -moz-column-gap: 1em;
+  -webkit-column-gap: 1em;
 }
 
 /* login */
@@ -29,11 +35,33 @@ body {
   width: 200px;
 }
 
-.single-picture {
-  position: relative;
-  float: left;
+.single-card {
+  display: inline-block;
+  margin:  0.25rem;
+  padding:  1rem;
+  width:  100%;
 }
 
 .add-input-group {
   margin-bottom: 2em;
+}
+
+.likes-text {
+  color: green;
+  margin-left: 1em;
+}
+
+.dislikes-text {
+  color: red;
+  margin-left: 3em;
+}
+
+.vote-counter {
+  position: relative;
+}
+
+.vote-warning {
+  position: absolute;
+  right: 1em;
+  bottom: 2em;
 }
