@@ -7,7 +7,6 @@ export default class UserInfo extends Component {
 
   constructor(props) {
     super(props);
-    console.log(this.props.d);
 
     this.displayAvatar = this.displayAvatar.bind(this);
     this.getProfilePic = this.getProfilePic.bind(this);

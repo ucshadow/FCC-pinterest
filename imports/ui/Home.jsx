@@ -18,20 +18,12 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
 
-    this.click_ = this.click_.bind(this);
     this.mapCards = this.mapCards.bind(this);
   }
 
-  click_() {
-    Meteor.call("solve", function(err, res) {
-      if(err){console.log(err)}
-      console.log(res)
-    })
-  };
-
   mapCards() {
     return this.props.userData.map((card) => {
-      return <SingleCard key={card._id._str} d={card} />
+      return <SingleCard key={Math.random()} d={card} />
     })
   }
 
@@ -40,7 +32,6 @@ export default class Home extends Component {
       <MuiThemeProvider muiTheme={lightMuiTheme}>
         <div className="card-holder" id="card-container">
           {this.mapCards()}
-          <button onClick={this.click_} > DATA </button>
         </div>
       </MuiThemeProvider>
     )

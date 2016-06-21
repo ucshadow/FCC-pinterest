@@ -1,11 +1,12 @@
-import { UserData } from '../imports/api/userData'
-import { VoteData } from '../imports/api/voteData'
+import { UserData } from '../imports/api/userData';
+import { AvatarsDB } from '../imports/api/avatarsDB'
 
 
 Meteor.publish('userData', function userPublish() {
   return UserData.find();
 });
 
-Meteor.publish('voteData', function votePublish() {
-  return VoteData.find();
+Meteor.publish('avatars', function usersPublish() {
+  return AvatarsDB.find();
 });
+

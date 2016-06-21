@@ -17,7 +17,7 @@ export default class App extends React.Component {
               <ul className="nav navbar-nav">
                 <li className="nav-button"><Link to="/" > Home </Link></li>
                 <li className="nav-button"><Link to="/Profile"> Profile </Link></li>
-                <li className="nav-button"><Link to="/MyScraps"> My Scraps </Link></li>
+                <li className="nav-button"><Link to="/MyCards"> My Cards </Link></li>
                 <li className="nav-button"><Link to="/about"> About </Link></li>
               </ul>
               <ul className="nav navbar-nav navbar-right">
