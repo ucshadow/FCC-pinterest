@@ -11,6 +11,7 @@ import About from '../imports/ui/About.jsx';
 import NotFound from '../imports/ui/NotFound.jsx';
 import Profile from '../imports/ui/Profile.jsx';
 import MyCards from '../imports/ui/MyCards.jsx';
+import AllUserPosts from '../imports/ui/AllUserPosts.jsx';
 
 
 export const renderRoutes = () => (
@@ -20,6 +21,7 @@ export const renderRoutes = () => (
       <Route path="Profile" component={ Profile } />
       <Route path="MyCards" component={ MyCards } />
       <Route path="about" component={ About } />
+      <Route path="all-posts/:poster" component={ AllUserPosts } />
       <Route path="*" component={ NotFound } />
     </Route>
   </Router>

@@ -2,18 +2,14 @@ import React, { Component, PropTypes } from 'react'
 import { createContainer } from 'meteor/react-meteor-data';
 import { UserData } from "../api/userData";
 import SingleCard from '../ui/SingleCard.jsx';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Navigation from '../ui/Navigation.jsx'
 
-
-const darkMuiTheme = getMuiTheme(darkBaseTheme);
 const lightMuiTheme = getMuiTheme(lightBaseTheme);
 
 
-export default class Home extends Component {
+export default class AllUserPosts extends Component {
 
   constructor(props) {
     super(props);
@@ -23,19 +19,17 @@ export default class Home extends Component {
 
   mapCards() {
     return this.props.userData.map((card) => {
-      return <SingleCard key={Math.random()} d={card} />
+      if(card.user === this.props.params.poster) {
+        return <SingleCard key={Math.random()} d={card} />
+      }
     })
   }
 
   render() {
     return (
       <MuiThemeProvider muiTheme={lightMuiTheme}>
-        <div>
-          <Navigation />
-          <div className="card-holder" id="card-container">
-
-            {this.mapCards()}
-          </div>
+        <div className="card-holder" id="card-container">
+          {this.mapCards()}
         </div>
       </MuiThemeProvider>
     )
@@ -43,7 +37,7 @@ export default class Home extends Component {
 }
 
 
-Home.propTypes = {
+AllUserPosts.propTypes = {
   muiTheme: PropTypes.object.isRequired,
   userData: PropTypes.array.isRequired
 };
@@ -54,4 +48,4 @@ export default createContainer(() => {
     muiTheme: getMuiTheme(),
     userData: UserData.find({}).fetch()
   }
-}, Home);
+}, AllUserPosts);

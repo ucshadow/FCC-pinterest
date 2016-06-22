@@ -3,7 +3,6 @@ import { createContainer } from 'meteor/react-meteor-data';
 import Avatar from '../ui/Avatar.jsx'
 
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -11,11 +10,9 @@ import IconButton from 'material-ui/IconButton';
 import ThumbUp from 'material-ui/svg-icons/action/thumb-up';
 import ThumbDown from 'material-ui/svg-icons/action/thumb-down';
 import DeleteForever from 'material-ui/svg-icons/action/delete-forever';
+import Badge from 'material-ui/Badge';
 
-const darkMuiTheme = getMuiTheme(darkBaseTheme);
-const lightMuiTheme = getMuiTheme(lightBaseTheme);
-const style = {marginRight: 20};
-const pictureStyle = {width: "80%", height: "80%", marginLeft: "10%"};
+const pictureStyle = {width: "80%", height: "80%", marginLeft: "10%", border: "#223539 1px solid"};
 
 
 export default class SingleCard extends Component {
@@ -47,14 +44,14 @@ export default class SingleCard extends Component {
   getIconStyle(caller) {
     if(caller === "like") {
       if(this.state.vote === "green") {
-        return {fill: "green"}
+        return {fill: "rgb(0, 188, 212)"}
       } else {
         return {fill: "rgba(0, 0, 0, 0.870588)"}
       }
     }
     if(caller === "dislike") {
       if(this.state.vote === "red") {
-        return {fill: "red"}
+        return {fill: "rgb(255, 64, 129)"}
       } else {
         return {fill: "rgba(0, 0, 0, 0.870588)"}
       }
@@ -90,29 +87,42 @@ export default class SingleCard extends Component {
   render() {
     return (
       <div className="single-card">
-        <Card  zDepth={4}>
+        <Card  zDepth={4} containerStyle={{background: "rgb(72, 105, 112)"}}>
           <Avatar key={Math.random()} title={this.props.d.user} />
           <DisplayImage key={Math.random()} d={this.props.d.url} />
-          <CardText>
-            {this.props.d.text}
-          </CardText>
-          <CardActions>
+          <CardText
+            color="#d9edf7"
+            style={{textAlign: "center"}}
+          > {this.props.d.text} </CardText>
+          <CardActions style={{top: "-1em", left: "4em", height: "6em"}}>
             <div className="vote-buttons" >
-              <IconButton tooltip="Like" iconStyle={this.getIconStyle("like")} onClick={this.like}>
-                <ThumbUp />
-              </IconButton>
-              <IconButton tooltip="Dislike" iconStyle={this.getIconStyle("dislike")} onClick={this.dislike}>
-                <ThumbDown />
-              </IconButton>
+              <Badge
+                badgeContent={this.props.d.likes.length}
+                secondary={true}
+                badgeStyle={{top: 40, right: 62}}
+              >
+                <IconButton tooltip="Like" iconStyle={this.getIconStyle("like")} onClick={this.like}>
+                  <ThumbUp />
+                </IconButton>
+              </Badge>
+              <Badge
+                badgeContent={this.props.d.dislikes.length}
+                primary={true}
+                badgeStyle={{top: 34, right: 10}}
+              >
+                <IconButton tooltip="Dislike" iconStyle={this.getIconStyle("dislike")} onClick={this.dislike}>
+                  <ThumbDown />
+                </IconButton>
+              </Badge>
               {(this.props.profile ?
-              <IconButton tooltip="Delete" onClick={this.deleteCard}>
+              <IconButton
+                tooltip="Delete"
+                onClick={this.deleteCard}
+                iconStyle={{position: "absolute", top: "80%", right: "4px", fill: "#ff4081"}}
+              >
                 <DeleteForever />
               </IconButton> :
               null)}
-            </div>
-            <div className="vote-counter" >
-              <span className="likes-text">{this.props.d.likes.length}</span>
-              <span className="dislikes-text">{this.props.d.dislikes.length}</span>
             </div>
             <div id={this.props.d._id} className="vote-warning"> </div>
           </CardActions>
@@ -130,7 +140,7 @@ class DisplayImage extends Component {
     this.state = {img: this.props.d};
 
 
-    this.imageExists(this.props.d, (image) =>  {
+    this.imageExists(this.props.d, (image) => {
       if(!image) {
         this.setState({img: "/img/no-image.jpg"})
       }

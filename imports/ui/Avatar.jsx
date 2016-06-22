@@ -4,11 +4,13 @@ import { AvatarsDB } from '../api/avatarsDB'
 
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 
+const titleStyle = {fontWeight: "bold", color: "white", textDecoration: "none", position: "absolute",
+                    marginLeft: "4em"};
+
 class Avatar extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {avatar: null};
 
     this.selectAvatar = this.selectAvatar.bind(this);
   }
@@ -18,15 +20,16 @@ class Avatar extends Component {
     return this.props.avatars.map((a) => {
       if(a.name === this.props.title) {
         url = a.avatar;
-        return <Pic key={Math.random()} img={url} />
       }
+      return <Pic key={Math.random()} img={url} />
     })
   }
 
   render() {
     return (
       <CardHeader
-        title={this.props.title}>
+        title={<a href={"all-posts/" + this.props.title} style={titleStyle}> {this.props.title} </a>}
+      >
         {this.selectAvatar()}
       </CardHeader>
     )

@@ -14,8 +14,9 @@ Meteor.methods({
       let exists = AvatarsDB.findOne({"name": Meteor.user().username});
       if(exists) {
         AvatarsDB.update({_id: exists._id}, {$set: {avatar: img}})
+      } else {
+        AvatarsDB.insert({name: Meteor.user().username, avatar: img})
       }
-      AvatarsDB.insert({name: Meteor.user().username, avatar: img})
     }
   },
 

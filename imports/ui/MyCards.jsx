@@ -6,6 +6,8 @@ import SingleCard from '../ui/SingleCard.jsx'
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import TextField from 'material-ui/TextField';
+import FlatButton from 'material-ui/FlatButton';
 
 const lightMuiTheme = getMuiTheme(lightBaseTheme);
 
@@ -30,6 +32,9 @@ class MyCards extends Component {
   addCard() {
     let img = $("#pic").val();
     let com = $("#comment").val();
+    if(com.length > 200) {
+      com = com.substring(0, 200);
+    }
 
     this.imageExists(img, function(image) {
       if(image) {
@@ -42,11 +47,7 @@ class MyCards extends Component {
 
   myCards() {
     return this.props.userData.map((c) => {
-      if(c) {
-        if(c.user === this.props.user) {
-          return <SingleCard key={Math.random()} _id={c._id}  d={c} profile={true} />
-        }
-      }
+      return <SingleCard key={Math.random()} _id={c._id}  d={c} profile={true} />
     })
   }
 
@@ -56,9 +57,21 @@ class MyCards extends Component {
         <MuiThemeProvider muiTheme={lightMuiTheme}>
           <div className="my-cards-container">
             <div className="add-input-group">
-              <input type="text" id="pic"/>
-              <input type="text" id="comment"/>
-              <button onClick={this.addCard} > Add Card </button>
+
+              <TextField
+                hintText="Picture URL"
+                floatingLabelText="Picture URL"
+                id="pic"
+              />
+              <TextField
+                hintText="Comment"
+                floatingLabelText="Comment"
+                id="comment"
+                style={{marginLeft: "1em"}}
+              />
+
+              <FlatButton label="Add Card" secondary={true} onClick={this.addCard} />
+
             </div>
             <div className="card-holder">
               {this.myCards()}
@@ -84,9 +97,10 @@ MyCards.propTypes = {
 
 export default createContainer(() => {
   Meteor.subscribe("userData");
+  let u = Meteor.user();
   return {
     user: (Meteor.user() ? Meteor.user().username : "-"),
-    userData: UserData.find({}).fetch()
+    userData: u ? UserData.find({user: u.username}).fetch() : []
   };
 }, MyCards);
 

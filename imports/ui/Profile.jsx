@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { createContainer } from 'meteor/react-meteor-data'
 import UserInfo from '../ui/UserInfo.jsx'
+import Navigation from '../ui/Navigation.jsx'
 
 
 class Profile extends Component {
@@ -15,8 +16,6 @@ class Profile extends Component {
   displayUserInfo() {
     return (
       <div className="user-info" key="d1g23h5fds5">
-        Username: {Meteor.user().username}
-        <br />
       </div>
     )
   }
@@ -30,6 +29,7 @@ class Profile extends Component {
   render() {
     return (
       <div className="user-info">
+        <Navigation />
         {this.props.user.map((u) => {
           return (u ? this.displayUserInfo() : (Meteor.user() ? "Loading..." : "Please Log In to access your profile"))
           })}

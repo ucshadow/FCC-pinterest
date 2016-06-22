@@ -1,5 +1,10 @@
 body {
-  background: #81849c;
+  /*background-image: url("/img/bg.jpg");*/
+  background: white;
+}
+
+#navbarCollapse {
+  background: #18272a;
 }
 
 #card-container {
@@ -9,8 +14,15 @@ body {
 .card-holder {
   -moz-column-width: 18em;
   -webkit-column-width: 18em;
-  -moz-column-gap: 1em;
-  -webkit-column-gap: 1em;
+  -moz-column-gap: 2em;
+  -webkit-column-gap: 2em;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.single-card {
+  display: inline-block;
+  margin-bottom: 1em;
 }
 
 /* login */
@@ -23,6 +35,9 @@ body {
   line-height: inherit!important;
   right: 1.5em;
   position: absolute;
+  width: 20em;
+  text-align: right;
+  top: 1em;
 }
 
 #login-dropdown-list {
@@ -33,13 +48,6 @@ body {
 
 .my-pics {
   width: 200px;
-}
-
-.single-card {
-  display: inline-block;
-  margin:  0.25rem;
-  padding:  1rem;
-  width:  100%;
 }
 
 .add-input-group {
@@ -62,8 +70,8 @@ body {
 
 .vote-warning {
   position: absolute;
-  right: 1em;
-  bottom: 2em;
+  left: 3em;
+  bottom: -4px;
 }
 
 .avatar {
@@ -79,4 +87,18 @@ body {
   rgba(128, 128, 128, 0.14902);
   margin-right: 16px;
   -webkit-user-select: none;
+  margin-left: -4em;
+}
+
+.profile-avatar-container {
+  width: 30%;
+  margin-left: 2em;
+}
+
+.add-input-group {
+  padding : 1em;
+}
+
+.navigation-holder {
+  margin-bottom: 2em;
 }
