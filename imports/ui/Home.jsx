@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { createContainer } from 'meteor/react-meteor-data';
 import { UserData } from "../api/userData";
-import SingleCard from '../ui/SingleCard.jsx';
+import StateHolder from '../ui/SingleCard.jsx';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -21,9 +21,14 @@ export default class Home extends Component {
     this.mapCards = this.mapCards.bind(this);
   }
 
+  shouldComponentUpdate(nextProps) {
+    return this.props.userData.length !== nextProps.userData.length;
+  }
+
+
   mapCards() {
     return this.props.userData.map((card) => {
-      return <SingleCard key={Math.random()} d={card} />
+      return <StateHolder key={Math.random()} d={card} />
     })
   }
 

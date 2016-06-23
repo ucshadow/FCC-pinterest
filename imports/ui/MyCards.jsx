@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data'
 import { UserData } from '../api/userData'
-import SingleCard from '../ui/SingleCard.jsx'
+import StateHolder from '../ui/SingleCard.jsx'
 import Navigation from '../ui/Navigation.jsx'
 
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
@@ -21,7 +21,9 @@ class MyCards extends Component {
     this.myCards = this.myCards.bind(this);
   }
 
-
+  shouldComponentUpdate(nextProps) {
+    return this.props.userData.length !== nextProps.userData.length;
+  }
 
   imageExists(url, callback) {
     var img = new Image();
@@ -33,6 +35,13 @@ class MyCards extends Component {
   addCard() {
     let img = $("#pic").val();
     let com = $("#comment").val();
+    if(img.indexOf("youtube.com/watch") >= 0) {
+      // youtube url transform
+      let a = img;
+      let b = a.split("watch")[0] + "embed/" + a.substring(a.length - 11, a.length);
+      Meteor.call("addToCards", b, com);
+      return;
+    }
     if(com.length > 200) {
       com = com.substring(0, 200);
     }
@@ -48,7 +57,7 @@ class MyCards extends Component {
 
   myCards() {
     return this.props.userData.map((c) => {
-      return <SingleCard key={Math.random()} _id={c._id}  d={c} profile={true} />
+      return <StateHolder key={Math.random()} _id={c._id}  d={c} profile={true} />
     })
   }
 
@@ -59,11 +68,14 @@ class MyCards extends Component {
           <div>
             <Navigation />
             <div className="my-cards-container">
+              <div className="description-add-card">
+                Paste [jpg, png, gif, webm, youtube] link into the Media URL area
+              </div>
               <div className="add-input-group">
 
                 <TextField
-                  hintText="Picture URL"
-                  floatingLabelText="Picture URL"
+                  hintText="Media URL"
+                  floatingLabelText="Media URL"
                   id="pic"
                 />
                 <TextField

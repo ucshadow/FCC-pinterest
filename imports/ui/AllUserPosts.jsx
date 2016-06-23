@@ -1,12 +1,17 @@
 import React, { Component, PropTypes } from 'react'
 import { createContainer } from 'meteor/react-meteor-data';
 import { UserData } from "../api/userData";
-import SingleCard from '../ui/SingleCard.jsx';
+import StateHolder from '../ui/SingleCard.jsx';
+import Navigation from '../ui/Navigation.jsx'
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const lightMuiTheme = getMuiTheme(lightBaseTheme);
+
+function asd() {
+  return UserData.find({}).fetch()
+}
 
 
 export default class AllUserPosts extends Component {
@@ -17,10 +22,14 @@ export default class AllUserPosts extends Component {
     this.mapCards = this.mapCards.bind(this);
   }
 
+  shouldComponentUpdate(nextProps) {
+    return this.props.userData.length !== nextProps.userData.length;
+  }
+
   mapCards() {
     return this.props.userData.map((card) => {
       if(card.user === this.props.params.poster) {
-        return <SingleCard key={Math.random()} d={card} />
+        return <StateHolder key={Math.random()} d={card} />
       }
     })
   }
@@ -28,13 +37,18 @@ export default class AllUserPosts extends Component {
   render() {
     return (
       <MuiThemeProvider muiTheme={lightMuiTheme}>
-        <div className="card-holder" id="card-container">
-          {this.mapCards()}
+        <div>
+            <Navigation />
+          <div className="card-holder" id="card-container">
+            {this.mapCards()}
+          </div>
         </div>
       </MuiThemeProvider>
     )
   }
 }
+
+
 
 
 AllUserPosts.propTypes = {

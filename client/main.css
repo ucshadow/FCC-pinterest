@@ -7,13 +7,9 @@ body {
   background: #18272a;
 }
 
-#card-container {
-
-}
-
 .card-holder {
-  -moz-column-width: 18em;
-  -webkit-column-width: 18em;
+  -moz-column-width: 16em;
+  -webkit-column-width: 16em;
   -moz-column-gap: 2em;
   -webkit-column-gap: 2em;
   margin-left: 1em;
@@ -24,6 +20,18 @@ body {
 .single-card {
   display: inline-block;
   margin-bottom: 1em;
+  position: relative;
+}
+
+.delete-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: none;
+  border: none;
+  font-weight: bold;
+  color: #ff4081;
+  outline: none;
 }
 
 /* login */
@@ -75,6 +83,8 @@ body {
 
 .add-input-group {
   margin-bottom: 2em;
+  padding : 1em;
+  margin-top: -2em;
 }
 
 .likes-text {
@@ -118,10 +128,6 @@ body {
   margin-left: 2em;
 }
 
-.add-input-group {
-  padding : 1em;
-}
-
 .navigation-holder {
   margin-bottom: 2em;
 }
@@ -129,5 +135,11 @@ body {
 .nav-button {
   margin-right: 2em;
   margin-top: 10px;
+}
+
+.description-add-card {
+  margin-left: 1em;
+  color: #b3b3b3;
+  margin-top: 1em;
 }
 
