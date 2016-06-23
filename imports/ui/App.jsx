@@ -16,39 +16,11 @@ const lightMuiTheme = getMuiTheme(lightBaseTheme);
 
 export default class App extends React.Component {
 
-  constructor(props) {
-    super(props);
-    //this.state = {page: links.indexOf(this.props.location.pathname)};
-    //console.log(this.props.location.pathname);
-
-    this.routeTo = this.routeTo.bind(this)
-  }
-
-  routeTo(tab) {
-    this.setState({page: links.indexOf(tab.props.route)});
-    this.props.router.push(tab.props.route);
-    test()
-  }
-
   render() {
     return (
       <MuiThemeProvider muiTheme={lightMuiTheme}>
         <div>
           <div className="whole-nav">
-            <nav role="navigation" className="navbar navbar-default" style={{
-            background: "none", border: "none"}}>
-              <div id="navbarCollapse" className="collapse navbar-collapse">
-                <ul className="nav navbar-nav">
-                  <li className="nav-button"><Link to="/" > Home </Link></li>
-                  <li className="nav-button"><Link to="/Profile"> Profile </Link></li>
-                  <li className="nav-button"><Link to="/MyCards"> My Cards </Link></li>
-                  <li className="nav-button"><Link to="/about"> About </Link></li>
-                </ul>
-                <ul className="nav navbar-nav navbar-right">
-                    <li className="nav-account"><AccountsUIWrapper /></li>
-                </ul>
-              </div>
-            </nav>
         </div>
           {this.props.children}
         </div>

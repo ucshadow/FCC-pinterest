@@ -18,6 +18,7 @@ body {
   -webkit-column-gap: 2em;
   margin-left: 1em;
   margin-right: 1em;
+  margin-top: 1em;
 }
 
 .single-card {
@@ -40,8 +41,30 @@ body {
   top: 1em;
 }
 
+.login-button {
+  background: #00bcd4!important;
+  border: none!important;
+  border-radius: 2px!important;
+  font-size: 1em!important;
+}
+
 #login-dropdown-list {
-  left: -10em!important;
+  position: absolute;
+  right: 0;
+  top: 4em;
+  left: 20%;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.nav-account {
+  position: absolute;
+  left: 1em;
+  margin-right: 2em;
+  top: 4px;
+}
+
+.nav-account a {
+  color: #00bcd4;
 }
 
 /* end login */
@@ -102,3 +125,9 @@ body {
 .navigation-holder {
   margin-bottom: 2em;
 }
+
+.nav-button {
+  margin-right: 2em;
+  margin-top: 10px;
+}
+

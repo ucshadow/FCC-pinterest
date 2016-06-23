@@ -12,6 +12,8 @@ import ThumbDown from 'material-ui/svg-icons/action/thumb-down';
 import DeleteForever from 'material-ui/svg-icons/action/delete-forever';
 import Badge from 'material-ui/Badge';
 
+import { UserData } from "../api/userData";
+
 const pictureStyle = {width: "80%", height: "80%", marginLeft: "10%", border: "#223539 1px solid"};
 
 
@@ -30,6 +32,8 @@ export default class SingleCard extends Component {
     if(disliked >= 0) {
       this.state = ({vote: "red"})
     }
+
+    console.log(UserData.findOne({_id: this.props.d._id}));
 
     this.deleteCard = this.deleteCard.bind(this);
     this.like = this.like.bind(this);
@@ -137,14 +141,14 @@ class DisplayImage extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {img: this.props.d};
+    //this.state = {img: this.props.d};
 
 
-    this.imageExists(this.props.d, (image) => {
+    /*this.imageExists(this.props.d, (image) => {
       if(!image) {
         this.setState({img: "/img/no-image.jpg"})
       }
-    })
+    })*/
 
   }
 
@@ -158,7 +162,10 @@ class DisplayImage extends Component {
   render() {
     return (
       <CardMedia mediaStyle={pictureStyle}>
-        <img src={this.state.img} />
+        <object data={this.props.d}>
+          <img src="/img/no-image.jpg"/>
+        </object>
+
       </CardMedia>
     )
   }

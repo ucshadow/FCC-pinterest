@@ -11,6 +11,8 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import RaisedButton from 'material-ui/RaisedButton';
+import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 
 const lightMuiTheme = getMuiTheme(lightBaseTheme);
 
@@ -33,7 +35,7 @@ class Navigation extends Component{
     this.props.router.push(tab.props.route);
   }
 
-  render() {
+  /*render() {
     return (
       <MuiThemeProvider muiTheme={lightMuiTheme}>
         <div className="navigation-holder">
@@ -44,6 +46,25 @@ class Navigation extends Component{
             <Tab label="About" route="/about" onActive={this.routeTo} />
           </Tabs>
         </div>
+      </MuiThemeProvider>
+    )
+  }*/
+
+  render() {
+    return (
+      <MuiThemeProvider muiTheme={lightMuiTheme}>
+        <Toolbar>
+          <ToolbarGroup>
+            <Link to="/" className="nav-button"> <RaisedButton label="Home" primary={true} /> </Link>
+            <Link to="/Profile" className="nav-button"> <RaisedButton label="Profile" primary={true} /> </Link>
+            <Link to="/MyCards" className="nav-button"> <RaisedButton label="My Cards" primary={true} /> </Link>
+            <Link to="/about" className="nav-button"> <RaisedButton label="About" primary={true} /> </Link>
+          </ToolbarGroup>
+          <ToolbarGroup>
+            <ToolbarSeparator />
+            <div className="nav-account"><AccountsUIWrapper /></div>
+          </ToolbarGroup>
+        </Toolbar>
       </MuiThemeProvider>
     )
   }

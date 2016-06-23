@@ -6,8 +6,8 @@ import Navigation from '../ui/Navigation.jsx'
 
 class Profile extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.displayUserInfo = this.displayUserInfo.bind(this);
     this.userInfo = this.userInfo.bind(this);
@@ -29,7 +29,7 @@ class Profile extends Component {
   render() {
     return (
       <div className="user-info">
-        <Navigation />
+        {this.props.route.nav}
         {this.props.user.map((u) => {
           return (u ? this.displayUserInfo() : (Meteor.user() ? "Loading..." : "Please Log In to access your profile"))
           })}

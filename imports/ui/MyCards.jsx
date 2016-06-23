@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data'
 import { UserData } from '../api/userData'
 import SingleCard from '../ui/SingleCard.jsx'
+import Navigation from '../ui/Navigation.jsx'
 
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -25,7 +26,7 @@ class MyCards extends Component {
   imageExists(url, callback) {
     var img = new Image();
     img.onload = function() { callback(true); };
-    img.onerror = function() { callback(false); };
+    img.onerror = function() { callback(true); };
     img.src = url;
   }
 
@@ -55,35 +56,41 @@ class MyCards extends Component {
     if(this.props.user !== "-") {
       return (
         <MuiThemeProvider muiTheme={lightMuiTheme}>
-          <div className="my-cards-container">
-            <div className="add-input-group">
+          <div>
+            <Navigation />
+            <div className="my-cards-container">
+              <div className="add-input-group">
 
-              <TextField
-                hintText="Picture URL"
-                floatingLabelText="Picture URL"
-                id="pic"
-              />
-              <TextField
-                hintText="Comment"
-                floatingLabelText="Comment"
-                id="comment"
-                style={{marginLeft: "1em"}}
-              />
+                <TextField
+                  hintText="Picture URL"
+                  floatingLabelText="Picture URL"
+                  id="pic"
+                />
+                <TextField
+                  hintText="Comment"
+                  floatingLabelText="Comment"
+                  id="comment"
+                  style={{marginLeft: "1em"}}
+                />
 
-              <FlatButton label="Add Card" secondary={true} onClick={this.addCard} />
+                <FlatButton label="Add Card" secondary={true} onClick={this.addCard} />
 
-            </div>
-            <div className="card-holder">
-              {this.myCards()}
+              </div>
+              <div className="card-holder">
+                {this.myCards()}
+              </div>
             </div>
           </div>
         </MuiThemeProvider>
       )
     } else {
       return (
-        <div className="user-info">
-          Please Log In to access your Cards!
-        </div>
+        <MuiThemeProvider muiTheme={lightMuiTheme}>
+          <div className="user-info">
+            <Navigation />
+            Please Log In to access your Cards!
+          </div>
+        </MuiThemeProvider>
       )
     }
   }
@@ -92,7 +99,8 @@ class MyCards extends Component {
 
 MyCards.propTypes = {
   user: PropTypes.string.isRequired,
-  userData: PropTypes.array.isRequired
+  userData: PropTypes.array.isRequired,
+  muiTheme: PropTypes.object.isRequired
 };
 
 export default createContainer(() => {
@@ -100,7 +108,8 @@ export default createContainer(() => {
   let u = Meteor.user();
   return {
     user: (Meteor.user() ? Meteor.user().username : "-"),
-    userData: u ? UserData.find({user: u.username}).fetch() : []
+    userData: u ? UserData.find({user: u.username}).fetch() : [],
+    muiTheme: getMuiTheme()
   };
 }, MyCards);
 

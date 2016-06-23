@@ -2,6 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router';
 import { Meteor } from 'meteor/meteor';
+import Navigation from '../imports/ui/Navigation.jsx'
 
 import '../imports/startup/accounts-config.js';
 //import { YourCustomCollection } from '../imports/api/yourCustomCollection.js';
@@ -18,9 +19,9 @@ export const renderRoutes = () => (
   <Router history={ browserHistory }>
     <Route path="/" component={ App }>
       <IndexRoute component={ Home } />
-      <Route path="Profile" component={ Profile } />
+      <Route path="Profile" component={ Profile } nav={<Navigation />}/>
       <Route path="MyCards" component={ MyCards } />
-      <Route path="about" component={ About } />
+      <Route path="about" component={ About } nav={<Navigation />} />
       <Route path="all-posts/:poster" component={ AllUserPosts } />
       <Route path="*" component={ NotFound } />
     </Route>
