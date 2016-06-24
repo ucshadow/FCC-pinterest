@@ -10,5 +10,6 @@ Accounts.onCreateUser(function(options, user) {
   }
   user.profile = options.profile;
   Meteor.call("addToUserData", user.username);
+  Meteor.call("addToAvatarData", user.username);
   return user
 });

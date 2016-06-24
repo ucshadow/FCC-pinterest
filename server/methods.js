@@ -9,6 +9,10 @@ Meteor.methods({
     //UserData.insert({user: name, url: "/img/no-avatar.png", avatar: "/img/no-avatar.png"})
   },
 
+  'addToAvatarData'(name) {
+    AvatarsDB.insert({name: name, avatar: "/img/no-avatar.png"})
+  },
+
   'updateAvatar'(img) {
     if(Meteor.user()) {
       let exists = AvatarsDB.findOne({"name": Meteor.user().username});

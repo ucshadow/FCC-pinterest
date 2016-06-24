@@ -16,18 +16,13 @@ class UserInfo extends Component {
 
   constructor(props) {
     super(props);
-    console.log(this.props.avatars);
 
     this.selectAvatar = this.selectAvatar.bind(this);
   }
 
   selectAvatar() {
-    let url = "/img/no-avatar.png";
     return this.props.avatars.map((a) => {
-      if(a.name === this.props.userName) {
-        url = a.avatar;
-      }
-      return <Pic key={Math.random()} img={url} user={this.props.d.username}/>
+      return <Pic key={Math.random()} img={a.avatar} user={this.props.d.username}/>
     })
   }
 
@@ -118,7 +113,7 @@ export default createContainer(() => {
   return {
     muiTheme: getMuiTheme(),
     userName: (Meteor.user() ? Meteor.user().username : "-"),
-    avatars: u ? AvatarsDB.find({}).fetch() : []
+    avatars: u ? AvatarsDB.find({name: u.username}).fetch() : []
   }
 }, UserInfo);
 
