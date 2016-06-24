@@ -33,16 +33,16 @@ class MyCards extends Component {
   }
 
   addCard() {
-    let img = $("#pic").val();
-    let com = $("#comment").val();
+    let img = $("#pic");
+    let com = $("#comment");
     let desc = $('.description-add-card');
     if(com.length > 200) {
       com = com.substring(0, 200);
     }
 
-    this.imageExists(img, function(image) {
+    this.imageExists(img.val(), function(image) {
       if(image) {
-        Meteor.call("addToCards", img, com);
+        Meteor.call("addToCards", img.val(), com);
       } else {
         desc.text("Can't load that image!");
         desc.css("color", "#ff4081");
