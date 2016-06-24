@@ -33,16 +33,16 @@ class MyCards extends Component {
   }
 
   addCard() {
-    let img = $("#pic");
-    let com = $("#comment");
+    let img = $("#pic").val();
+    let com = $("#comment").val();
     let desc = $('.description-add-card');
     if(com.length > 200) {
       com = com.substring(0, 200);
     }
 
-    this.imageExists(img.val(), function(image) {
+    this.imageExists(img, function(image) {
       if(image) {
-        Meteor.call("addToCards", img.val(), com);
+        Meteor.call("addToCards", img, com);
       } else {
         desc.text("Can't load that image!");
         desc.css("color", "#ff4081");
@@ -52,8 +52,8 @@ class MyCards extends Component {
         }, 2000)
       }
     });
-    img.val("");
-    com.val("");
+    document.getElementById("pic").value = "";
+    document.getElementById("comment").value = "";
   }
 
   myCards() {
