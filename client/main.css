@@ -8,8 +8,8 @@ body, body {
 }
 
 .card-holder {
-  -moz-column-width: 16em;
-  -webkit-column-width: 16em;
+  -moz-column-width: 18em;
+  -webkit-column-width: 18em;
   -moz-column-gap: 2em;
   -webkit-column-gap: 2em;
   margin-left: 10%;
