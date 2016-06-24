@@ -70,7 +70,7 @@ class VoteRender extends Component {
   getIconStyle(caller) {
     if(caller === "like") {
       if(this.state.vote === "green") {
-        return {fill: "#FF4081"}
+        return {fill: "#388E3C"}
       } else {
         return {fill: "rgba(0, 0, 0, 0.870588)"}
       }
@@ -113,7 +113,12 @@ class VoteRender extends Component {
 
 let Container = createContainer((props) => {
   let doc = UserData.findOne({_id: props.id});
+  let userName = null;
+  if(Meteor.user()) {
+    userName = Meteor.user().username
+  }
   return {
-    d: doc ? doc : null
+    d: doc ? doc : null,
+    userName: userName
   }
 }, VoteRender);
