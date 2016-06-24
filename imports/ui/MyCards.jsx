@@ -42,7 +42,7 @@ class MyCards extends Component {
 
     this.imageExists(img, function(image) {
       if(image) {
-        Meteor.call("addToCards", img, com)
+        Meteor.call("addToCards", img, com);
       } else {
         desc.text("Can't load that image!");
         desc.css("color", "#ff4081");
@@ -51,7 +51,9 @@ class MyCards extends Component {
           desc.text("Paste picture link into the Picture URL area")
         }, 2000)
       }
-    })
+    });
+    img.val("");
+    com.val("");
   }
 
   myCards() {

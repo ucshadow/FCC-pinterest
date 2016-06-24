@@ -86,7 +86,7 @@ class VoteRender extends Component {
 
   render() {
     return (
-      <CardActions style={{height: "6em", padding: 0, paddingLeft: "20%"}}>
+      <CardActions style={{height: "6em", padding: 0, paddingLeft: "20%", left: "-0.5em"}}>
         <div className="vote-buttons" >
           <Badge
             badgeContent={this.props.d.likes.length}
