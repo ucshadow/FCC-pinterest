@@ -19,9 +19,9 @@ export const renderRoutes = () => (
   <Router history={ browserHistory }>
     <Route path="/" component={ App }>
       <IndexRoute component={ Home } />
-      <Route path="Profile" component={ Profile } nav={<Navigation />}/>
+      <Route path="Profile" component={ Profile } />
       <Route path="MyCards" component={ MyCards } />
-      <Route path="about" component={ About } nav={<Navigation />} />
+      <Route path="about" component={ About }/>
       <Route path="all-posts/:poster" component={ AllUserPosts } />
       <Route path="*" component={ NotFound } />
     </Route>
@@ -32,6 +32,20 @@ export const renderRoutes = () => (
 Meteor.startup(() => {
 
   render(renderRoutes(), document.getElementById('app'));
+
+  WebFontConfig = {
+    google: { families: [ 'Roboto Slab:700,400:latin', 'Oswald:400', 'Mouse Memoirs' ] }
+  };
+  (function() {
+    var wf = document.createElement('script');
+    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+    wf.type = 'text/javascript';
+    wf.async = 'true';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(wf, s);
+  })();
+
 
 });
 

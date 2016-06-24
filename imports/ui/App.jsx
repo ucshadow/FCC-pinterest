@@ -2,8 +2,6 @@ import React, { Component, PropTypes } from 'react'
 import { render } from 'react-dom';
 import { createContainer } from 'meteor/react-meteor-data';
 import { withRouter } from 'react-router'
-
-import { Link } from 'react-router';
 import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 import Navigation from '../ui/Navigation.jsx'
 
@@ -20,8 +18,8 @@ export default class App extends React.Component {
     return (
       <MuiThemeProvider muiTheme={lightMuiTheme}>
         <div>
-          <div className="whole-nav">
-        </div>
+          <div className="whole-nav"> </div>
+          <div className="carpet"> </div>
           {this.props.children}
         </div>
       </MuiThemeProvider>

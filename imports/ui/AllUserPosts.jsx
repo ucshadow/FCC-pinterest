@@ -9,11 +9,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const lightMuiTheme = getMuiTheme(lightBaseTheme);
 
-function asd() {
-  return UserData.find({}).fetch()
-}
-
-
 export default class AllUserPosts extends Component {
 
   constructor(props) {

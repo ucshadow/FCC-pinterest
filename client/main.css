@@ -1,6 +1,6 @@
-body {
-  /*background-image: url("/img/bg.jpg");*/
-  background: white;
+body, body {
+  font-family: 'Roboto', sans-serif;
+  background: #FFFFFF;
 }
 
 #navbarCollapse {
@@ -12,9 +12,31 @@ body {
   -webkit-column-width: 16em;
   -moz-column-gap: 2em;
   -webkit-column-gap: 2em;
-  margin-left: 1em;
-  margin-right: 1em;
-  margin-top: 1em;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 4em;
+}
+
+.carpet {
+  position: fixed;
+  width: 90%;
+  background: #CFD8DC;
+  height: 100%;
+  z-index: -100;
+  left: 5%;
+}
+
+.dark-line {
+  height: 1em;
+  width: 100%;
+  background: rgba(16, 30, 33, 0.27);
+}
+
+.back-to-top {
+  position: fixed;
+  right: 3.6%;
+  top: 10%;
+  z-index: 150;
 }
 
 .single-card {
@@ -50,7 +72,7 @@ body {
 }
 
 .login-button {
-  background: #00bcd4!important;
+  background: #CFD8DC!important;
   border: none!important;
   border-radius: 2px!important;
   font-size: 1em!important;
@@ -72,7 +94,7 @@ body {
 }
 
 .nav-account a {
-  color: #00bcd4;
+  color: #CFD8DC;
 }
 
 /* end login */
@@ -83,18 +105,7 @@ body {
 
 .add-input-group {
   margin-bottom: 2em;
-  padding : 1em;
-  margin-top: -2em;
-}
-
-.likes-text {
-  color: green;
-  margin-left: 1em;
-}
-
-.dislikes-text {
-  color: red;
-  margin-left: 3em;
+  margin-left: 10%;
 }
 
 .vote-counter {
@@ -125,7 +136,8 @@ body {
 
 .profile-avatar-container {
   width: 30%;
-  margin-left: 2em;
+  margin-left: 10%;
+  margin-top: 2em;
 }
 
 .navigation-holder {
@@ -138,8 +150,22 @@ body {
 }
 
 .description-add-card {
-  margin-left: 1em;
+  margin-left: 10%;
   color: #b3b3b3;
-  margin-top: 1em;
+  margin-top: 2em;
+}
+
+.placeholder {
+  width: 300px;
+  height: 300px;
+  background-size: contain;
+  background: url('/img/no-image.jpg') no-repeat;
+}
+
+.about-description {
+  margin-left: 20%;
+  margin-top: 2em;
+  color: #212121;
+  font-size: 2em;
 }
 

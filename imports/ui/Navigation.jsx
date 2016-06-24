@@ -13,12 +13,22 @@ import {Tabs, Tab} from 'material-ui/Tabs';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import RaisedButton from 'material-ui/RaisedButton';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
+import Paper from 'material-ui/Paper';
+import FlatButton from 'material-ui/FlatButton';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ArrowUpward from 'material-ui/svg-icons/navigation/arrow-upward';
 
 const lightMuiTheme = getMuiTheme(lightBaseTheme);
 
 injectTapEventPlugin();
 
 let links = ["/", "/Profile", "/MyCards", "/about"];
+const style = {
+  height: "10em",
+  width: "100%",
+  display: 'inline-block',
+  background: "#455A64"
+};
 
 
 class Navigation extends Component{
@@ -27,7 +37,7 @@ class Navigation extends Component{
     super(props);
     this.state = {page: links.indexOf(window.location.pathname)};
 
-    this.routeTo = this.routeTo.bind(this)
+    this.routeTo = this.routeTo.bind(this);
   }
 
   routeTo(tab) {
@@ -35,37 +45,50 @@ class Navigation extends Component{
     this.props.router.push(tab.props.route);
   }
 
-  /*render() {
-    return (
-      <MuiThemeProvider muiTheme={lightMuiTheme}>
-        <div className="navigation-holder">
-          <Tabs initialSelectedIndex={this.state.page} >
-            <Tab label="Home" route="/" onActive={this.routeTo} />
-            <Tab label="Profile" route="/Profile" onActive={this.routeTo} />
-            <Tab label="My Cards" route="/MyCards" onActive={this.routeTo} />
-            <Tab label="About" route="/about" onActive={this.routeTo} />
-          </Tabs>
-        </div>
-      </MuiThemeProvider>
-    )
-  }*/
-
   render() {
     return (
       <MuiThemeProvider muiTheme={lightMuiTheme}>
-        <Toolbar>
-          <ToolbarGroup>
-            <Link to="/" className="nav-button"> <RaisedButton label="Home" primary={true} /> </Link>
-            <Link to="/Profile" className="nav-button"> <RaisedButton label="Profile" primary={true} /> </Link>
-            <Link to="/MyCards" className="nav-button"> <RaisedButton label="My Cards" primary={true} /> </Link>
-            <Link to="/about" className="nav-button"> <RaisedButton label="About" primary={true} /> </Link>
-          </ToolbarGroup>
-          <ToolbarGroup>
-            <ToolbarSeparator />
-            <div className="nav-account"><AccountsUIWrapper /></div>
-          </ToolbarGroup>
-        </Toolbar>
+        <Paper style={style} zDepth={4}>
+          <div className="dark-line"> </div>
+          <BackToTop />
+          <Toolbar zDepth={4} style={{background: "none"}}>
+            <ToolbarGroup>
+              <Link to="/" className="nav-button"> <FlatButton label="Home" labelStyle={{color: "#CFD8DC"}}/> </Link>
+              <Link to="/Profile" className="nav-button"> <FlatButton label="Profile" labelStyle={{color: "#CFD8DC"}} /> </Link>
+              <Link to="/MyCards" className="nav-button"> <FlatButton label="My Cards" labelStyle={{color: "#CFD8DC"}} /> </Link>
+              <Link to="/about" className="nav-button"> <FlatButton label="About" labelStyle={{color: "#CFD8DC"}} /> </Link>
+            </ToolbarGroup>
+            <ToolbarGroup>
+              <ToolbarSeparator />
+              <div className="nav-account"><AccountsUIWrapper /></div>
+            </ToolbarGroup>
+          </Toolbar>
+        </Paper>
       </MuiThemeProvider>
+    )
+  }
+}
+
+class BackToTop extends Component {
+
+  constructor() {
+    super();
+
+    this.backToTop = this.backToTop.bind(this);
+  }
+
+  backToTop() {
+    $("html, body").animate({
+      scrollTop: 0
+    }, 400);
+  }
+
+  render() {
+    return (
+      <FloatingActionButton secondary={true} className="back-to-top"
+        zDepth={4} onMouseDown={this.backToTop}>
+        <ArrowUpward />
+      </FloatingActionButton>
     )
   }
 }

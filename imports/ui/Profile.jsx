@@ -29,7 +29,7 @@ class Profile extends Component {
   render() {
     return (
       <div className="user-info">
-        {this.props.route.nav}
+        <Navigation />
         {this.props.user.map((u) => {
           return (u ? this.displayUserInfo() : (Meteor.user() ? "Loading..." : "Please Log In to access your profile"))
           })}

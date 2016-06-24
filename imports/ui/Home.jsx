@@ -8,8 +8,6 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Navigation from '../ui/Navigation.jsx'
 
-
-const darkMuiTheme = getMuiTheme(darkBaseTheme);
 const lightMuiTheme = getMuiTheme(lightBaseTheme);
 
 

@@ -6,8 +6,6 @@ import Navigation from '../ui/Navigation.jsx'
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import TextField from 'material-ui/TextField';
-import FlatButton from 'material-ui/FlatButton';
 
 const lightMuiTheme = getMuiTheme(lightBaseTheme);
 
@@ -18,9 +16,26 @@ export default class About extends React.Component {
     return (
       <MuiThemeProvider muiTheme={lightMuiTheme}>
         <div>
-          {this.props.route.nav}
-          <div>
-            Hi from About
+          <Navigation />
+          <div className="about-description">
+            A project By Catalin for freecodecamp.com -- build a Pinterest Clone
+            <br />
+            <ul>
+              <li>
+                Meteor
+              </li>
+              <li>
+                React
+              </li>
+              <li>
+                React Router
+              </li>
+              <li>
+                Material UI
+              </li>
+            </ul>
+            <br />
+            <a href="https://github.com/ucshadow/FCC-pinterest"> GitHub Repo </a>
           </div>
         </div>
       </MuiThemeProvider>

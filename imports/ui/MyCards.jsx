@@ -28,20 +28,14 @@ class MyCards extends Component {
   imageExists(url, callback) {
     var img = new Image();
     img.onload = function() { callback(true); };
-    img.onerror = function() { callback(true); };
+    img.onerror = function() { callback(false); };
     img.src = url;
   }
 
   addCard() {
     let img = $("#pic").val();
     let com = $("#comment").val();
-    if(img.indexOf("youtube.com/watch") >= 0) {
-      // youtube url transform
-      let a = img;
-      let b = a.split("watch")[0] + "embed/" + a.substring(a.length - 11, a.length);
-      Meteor.call("addToCards", b, com);
-      return;
-    }
+    let desc = $('.description-add-card');
     if(com.length > 200) {
       com = com.substring(0, 200);
     }
@@ -50,7 +44,12 @@ class MyCards extends Component {
       if(image) {
         Meteor.call("addToCards", img, com)
       } else {
-        console.log("Can't load that image!")
+        desc.text("Can't load that image!");
+        desc.css("color", "#ff4081");
+        setTimeout(function() {
+          desc.css("color", "#b3b3b3");
+          desc.text("Paste picture link into the Picture URL area")
+        }, 2000)
       }
     })
   }
@@ -69,13 +68,13 @@ class MyCards extends Component {
             <Navigation />
             <div className="my-cards-container">
               <div className="description-add-card">
-                Paste [jpg, png, gif, webm, youtube] link into the Media URL area
+                Paste picture link into the Picture URL area
               </div>
               <div className="add-input-group">
 
                 <TextField
-                  hintText="Media URL"
-                  floatingLabelText="Media URL"
+                  hintText="Picture URL"
+                  floatingLabelText="Picture URL"
                   id="pic"
                 />
                 <TextField
